@@ -23,29 +23,18 @@ def update_filename(instance, filename):
 #Django provides a table called user that stores basic user information like username, password and email id.
 #Rider builds upon that basic table and fields required for the system. A rider could be a poster or reserver.
 
-<<<<<<< HEAD
 class Author(models.Model):
-=======
-class User(models.Model):
->>>>>>> 05cf5c161a698b054a8f9ac34992d7e18f265c2b
-    
     #username
     user = models.OneToOneField(User)
     
     #gender
-<<<<<<< HEAD
     #gender = models.CharField(max_length=1)
-=======
-    gender = models.CharField(max_length=1)
-    
->>>>>>> 05cf5c161a698b054a8f9ac34992d7e18f265c2b
     #path to default user image
     image = models.CharField(max_length=300, default="http://www.decorview.com/sites/default/files/styles/products-image/public/default_user_image.jpg")
     
     #image
     imageobj = models.ImageField(upload_to=update_filename)
     
-<<<<<<< HEAD
     #verification status
     #1 - unverified
     #any other number = verification code
@@ -62,15 +51,13 @@ class User(models.Model):
     #user_rating = models.IntegerField(default=0)
     #negative flags
     #neg_flags = models.IntegerField(default=0)
-=======
+
     #ratings on receipe
-    user_rating = models.IntegerField(default=0)
->>>>>>> 05cf5c161a698b054a8f9ac34992d7e18f265c2b
-    
+
     #for reset_password
     reset_pass = models.CharField(default="",max_length=32)
     
-<<<<<<< HEAD
+
     #Facebook ID
     #facebook_id = models.CharField(default="",max_length=200)
     
@@ -114,25 +101,9 @@ class Ratings(models.Model):
     
     #def __unicode__(self):
 		#return self.rater.user.username + '->' + self.rated.user.username
-=======
     #given receipe
-    receipe_given = models.CharField(max_length=2000)
     
 #Rating on receipes
-
-class receipe(models.Model):
-    
-    #Change primary key to combination of everything to prevent duplicates.
-    #Rating
-    rating = models.ForeignKey(User, related_name = 'rating')
-    #The author that gives the rating
-    author = models.ForeignKey(User, related_name = 'author')
-    
-    def __unicode__(self):
-		return self.author.user.username + '->' + self.rating.user.username
->>>>>>> 05cf5c161a698b054a8f9ac34992d7e18f265c2b
-
-    
 #Post table stores details about posts
         
 #class Post(models.Model):
