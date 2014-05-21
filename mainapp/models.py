@@ -23,64 +23,41 @@ def update_filename(instance, filename):
 #Django provides a table called user that stores basic user information like username, password and email id.
 #Rider builds upon that basic table and fields required for the system. A rider could be a poster or reserver.
 
-class Rider(models.Model):
+class User(models.Model):
     
     #username
     user = models.OneToOneField(User)
+    
     #gender
     gender = models.CharField(max_length=1)
+    
     #path to default user image
     image = models.CharField(max_length=300, default="http://www.decorview.com/sites/default/files/styles/products-image/public/default_user_image.jpg")
+    
     #image
     imageobj = models.ImageField(upload_to=update_filename)
     
-    #verification status
-    #1 - unverified
-    #any other number = verification code
-    verified = models.CharField(max_length=5)
-    
-    #authentication type
-    #0 - PAN
-    #1 - Driving License
-    #2 - Voter Card
-    auth_type = models.CharField(max_length="20", default="None", null=False)
-    auth_token = models.CharField(max_length=200, default = "0", null=False)
-    
-    #user ratings
+    #ratings on receipe
     user_rating = models.IntegerField(default=0)
-    #negative flags
-    neg_flags = models.IntegerField(default=0)
     
     #for reset_password
     reset_pass = models.CharField(default="",max_length=32)
     
-    #Facebook ID
-    facebook_id = models.CharField(default="",max_length=200)
+    #given receipe
+    receipe_given = models.CharField(max_length=2000)
     
-    #Facebook Friends
-    fbfriends = models.ManyToManyField("self")
-    
-    #Facebook Groups
-    fbgroups = models.CharField(default="", max_length=1000)
-    
-    #Last synced facebook datetime
-    last_fb_sync = models.DateTimeField('last_fb_sync', default = timezone.now())
-    def __unicode__(self):
-        return self.user.username
+#Rating on receipes
 
-
-#Rating stores rating given to a rider by other riders
-
-class Rating(models.Model):
+class receipe(models.Model):
     
     #Change primary key to combination of everything to prevent duplicates.
     #Rating
-    rated = models.ForeignKey(Rider, related_name = 'rated')
-    #The rider that gives the rating
-    rater = models.ForeignKey(Rider, related_name = 'rater')
+    rating = models.ForeignKey(User, related_name = 'rating')
+    #The author that gives the rating
+    author = models.ForeignKey(User, related_name = 'author')
     
     def __unicode__(self):
-		return self.rater.user.username + '->' + self.rated.user.username
+		return self.author.user.username + '->' + self.rating.user.username
 
     
 #Post table stores details about posts
