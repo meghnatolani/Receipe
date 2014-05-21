@@ -79,7 +79,7 @@ class Recipe(model.Model):
     status = models.IntegerField(default=0)
     
     def __unicode__(self):
-        return self.user.username
+        return self.author.user.username
 
     
 class Ratings(models.Model):
