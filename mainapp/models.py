@@ -73,7 +73,7 @@ class Author(models.Model):
     def __unicode__(self):
         return self.user.username
         
-class Recipe(model.Model):
+class Recipe(models.Model):
     author = models.ForeignKey(Author, null=False, related_name='author')
     text = models.CharField(max_length=2000)
     status = models.IntegerField(default=0)
