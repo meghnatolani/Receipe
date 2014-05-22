@@ -41,7 +41,7 @@ class Author(models.Model):
         return self.user.username
         
 class Recipe(models.Model):
-    author = models.ForeignKey(Author, null=False, related_name='author')
+    owner = models.ForeignKey(Author, null=False, related_name='owner')
     short_des = models.CharField(max_length=2000)
     image = models.CharField(max_length=300, default="http://www.decorview.com/sites/default/files/styles/products-image/public/default_user_image.jpg")
     imageobj = models.ImageField(upload_to=update_filename)
@@ -58,7 +58,7 @@ class Recipe(models.Model):
     
 class Ratings(models.Model):
 
-    recipe = models.ForeignKey(Recipe, null=False, related_name='recipe')
+    rated = models.ForeignKey(Recipe, null=False, related_name='rated')
     rater = models.ForeignKey(Author)
     rating = models.IntegerField(default=0)
 
