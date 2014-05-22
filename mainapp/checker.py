@@ -30,9 +30,9 @@ def check(request):
                                                                               "text":'<p>No Rider associated!.</p><p>Please go back or click OK to log out.</p>',"link":'/logout_do/'}))
     
     #Check if user has been verified
-    if request.user.author.verified <> '1':
-        return HttpResponse(jinja_environ.get_template('notice.html').render({"author":request.user.author,
-                                                                              "text":'<p>Your account has not been verified. Please check your email and click on the verification link.<p>To re-send verification email, click <a href=\'/send_verification_email/\'>here</a><p>If you have entered a wrong email, you can change it from <a href=\'/edit_profile_page/\'>here</a></p><p>Click <a href=\'/logout_do/\'>here</a> to go to the homepage and log-in again</p></p>.</p>',
-                                                                              "link":'0'}))
+    #if request.user.author.verified <> '1':
+        #return HttpResponse(jinja_environ.get_template('notice.html').render({"author":request.user.author,
+                                                                              #"text":'<p>Your account has not been verified. Please check your email and click on the verification link.<p>To re-send verification email, click <a href=\'/send_verification_email/\'>here</a><p>If you have entered a wrong email, you can change it from <a href=\'/edit_profile_page/\'>here</a></p><p>Click <a href=\'/logout_do/\'>here</a> to go to the homepage and log-in again</p></p>.</p>',
+                                                                              #"link":'0'}))
 
     return None 
