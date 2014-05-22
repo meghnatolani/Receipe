@@ -42,6 +42,7 @@ class Author(models.Model):
         
 class Recipe(models.Model):
     owner = models.ForeignKey(Author, null=False, related_name='owner')
+    name = models.CharField(max_length=30)
     short_des = models.CharField(max_length=2000)
     image = models.CharField(max_length=300, default="http://www.decorview.com/sites/default/files/styles/products-image/public/default_user_image.jpg")
     imageobj = models.ImageField(upload_to=update_filename)

@@ -58,7 +58,7 @@ class Recipe(models.Model):
     
 class Ratings(models.Model):
 
-    recipe = models.ForeignKey(Recipe, null=False, related_name='recipe')
+    rated = models.ForeignKey(Recipe, null=False, related_name='rated')
     rater = models.ForeignKey(Author)
     rating = models.IntegerField(default=0)
 
