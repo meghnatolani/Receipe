@@ -502,7 +502,7 @@ def post_page(request):
         
 
 #Edit profile function. Called after a user presses done in edit profile. New data is requested from frontend and stored.
-@csrf_exempt
+#@csrf_exempt
 #def edit_profile(request):
     #if not request.user.is_authenticated():
         #return HttpResponse(jinja_environ.get_template('index.html').render({"author":None}))
@@ -882,7 +882,7 @@ def post_new(request):
     #if 'remarks' in request.REQUEST.keys():
         #remarks=request.REQUEST['remarks']
         
-    entry = Post(owner=owner, 
+    entry = Recipe(owner=owner, 
                  short_des=request.REQUEST['short_des'], 
                  ingredients=request.REQUEST['ingredients'],
                  calories=request.REQUEST['calories'],
