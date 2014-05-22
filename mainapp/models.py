@@ -26,7 +26,7 @@ def update_filename(instance, filename):
 class Author(models.Model):
     #username
     user = models.OneToOneField(User)
-    
+        
     #path to default user image
     image = models.CharField(max_length=300, default="http://www.decorview.com/sites/default/files/styles/products-image/public/default_user_image.jpg")
     
@@ -42,7 +42,14 @@ class Author(models.Model):
         
 class Recipe(models.Model):
     author = models.ForeignKey(Author, null=False, related_name='author')
-    text = models.CharField(max_length=2000)
+    short_des = models.CharField(max_length=2000)
+    image = models.CharField(max_length=300, default="http://www.decorview.com/sites/default/files/styles/products-image/public/default_user_image.jpg")
+    imageobj = models.ImageField(upload_to=update_filename)
+    ingredients = models.CharField(max_length=2000)
+    calories = models.IntegerField(max_length=4)
+    cost=models.IntegerField(max_length=4)
+    steps=models.CharField(max_length=4000)
+    share = models.IntegerField(default=0)
     status = models.IntegerField(default=0)
     
     def __unicode__(self):

@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <title>Welcome to Krrone</title>
+  <style>
+  
+{% include "bootstrap/css/checks.css" %} 
+
+.new
+{
+border:2px solid #222334;
+padding:0px 0px; 
+background:#222334;
+width:100%;
+border-radius:25px;
+}
+
+
+html,body
+{
+height:100%;
+}
+
+#wrap
+{
+min-height: 100%; 
+}
+
+#main
+{
+overflow:auto;
+padding-bottom:150px; /* this needs to be bigger than footer height*/
+}
+.footerBtns
+{
+color: white;
+position : relative ;
+}
+.footer 
+{
+position: relative;
+margin-top: -150px; /* negative value of footer height */
+height: 150px;
+clear:both;
+padding-top:20px;
+color:#222334;
+width:100%;
+} 
+</style>
+</head>
+<body>
+
+ <div class="header">
+		<div>
+			<a href="index.html"><img src="images/logo.png" alt="Logo"></a>
+		</div>
+</div>
+ </div>
+<div></div>
+  <div id="wrap">
+<div id="main" class="container clear-top">
+<div class="row"> 
+<div class="span12">
+</div>
+</div>
+</div>
+</div>
+
+<footer class="footer" style="background-color:#222334" >
+<div class="footerBtns"><font size="4">
+&nbsp;
+				<a href="/" title="Home">Home</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+				<a href="/aboutus/" title="Know about our team">About Us</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+				<a href="/contactus/" title="Contact Us">Contact Us</a>&nbsp;&nbsp;
+				
+				<br><br></font>
+
+</footer>
+
+</body>
+</html>
