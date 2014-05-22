@@ -12,26 +12,26 @@ from django.db.models import Count, Min, Sum, Avg
 import uuid
 import jinja2
 import smtplib
-jinja_environ = jinja2.Environment(loader=jinja2.FileSystemLoader([cpspath + '/carpoolsen/ui']));
+jinja_environ = jinja2.Environment(loader=jinja2.FileSystemLoader([cpspath + '/Receipe/ui']));
 
 #Checker function used to see if user is logged in and verified etc. Made separately instead of writing repeatedly
 def check(request):
     
     #Check if user is logged in
     if not request.user.is_authenticated():
-        return HttpResponse(jinja_environ.get_template('index.html').render({"rider":None}))
+        return HttpResponse(jinja_environ.get_template('index.html').render({"author":None}))
 
-    #Check if user has an associated rider
+    #Check if user has an associated author
     #(This will be false if the admin logs in)
     try:
-        request.user.rider
+        request.user.author
     except:
-        return HttpResponse(jinja_environ.get_template('notice.html').render({"rider":None,
+        return HttpResponse(jinja_environ.get_template('notice.html').render({"author":None,
                                                                               "text":'<p>No Rider associated!.</p><p>Please go back or click OK to log out.</p>',"link":'/logout_do/'}))
     
     #Check if user has been verified
-    if request.user.rider.verified <> '1':
-        return HttpResponse(jinja_environ.get_template('notice.html').render({"rider":request.user.rider,
+    if request.user.author.verified <> '1':
+        return HttpResponse(jinja_environ.get_template('notice.html').render({"author":request.user.author,
                                                                               "text":'<p>Your account has not been verified. Please check your email and click on the verification link.<p>To re-send verification email, click <a href=\'/send_verification_email/\'>here</a><p>If you have entered a wrong email, you can change it from <a href=\'/edit_profile_page/\'>here</a></p><p>Click <a href=\'/logout_do/\'>here</a> to go to the homepage and log-in again</p></p>.</p>',
                                                                               "link":'0'}))
 
