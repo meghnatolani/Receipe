@@ -797,9 +797,9 @@ def cancel_post(request):
             #entry.save()
             
         #else:
-   return HttpResponse(jinja_environ.get_template('notice.html').render({"author":request.user.author, 
-                                                                         "text":'<p>Recipe Deleted</p>\
-                                                                         <p>Please go back or click OK to go to the homepage</p>',"link":'/'}))
+            return HttpResponse(jinja_environ.get_template('notice.html').render({"author":request.user.author, 
+                                                                                  "text":'<p>Recipe Deleted</p>\
+                                                                                  <p>Please go back or click OK to go to the homepage</p>',"link":'/'}))
     except Exception as e:
         return HttpResponse(e)
 

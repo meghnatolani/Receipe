@@ -766,19 +766,19 @@ def login_do(request):
                                                                               #"text":'Password Changed. Please click OK to go to the homepage and log in again.',"link":'/logout_do/'}))
         
 ##Called when a user cancels his post. Here all the reserved users are sent a notification and the owner gets a negative flag if there are confirmed users on that post.
-#@csrf_exempt
-#def cancel_post(request):
-    #retval = check(request)
-    #if retval <> None:
-        #return retval
-    #user = request.user
+@csrf_exempt
+def cancel_post(request):
+    retval = check(request)
+    if retval <> None:
+        return retval
+    user = request.user
 
-    ##Not allowed to delete if user is not logged in. Not called, but to take edge cases into consideration.
-    #postid = request.REQUEST['postid']
+    #Not allowed to delete if user is not logged in. Not called, but to take edge cases into consideration.
+    recipeid = request.REQUEST['recipeid']
 
-    #try:
-        #entry = Post.objects.filter(pk=int(postid))[0]
-        #if entry.owner.user.pk == user.pk:
+    try:
+        entry = Recipe.objects.filter(pk=int(recipeid))[0]
+        if entry.owner.user.pk == user.pk:
             #if entry.reserved_set.aggregate(Sum('status'))['status__sum'] > 0:
                 #owner=entry.owner
                 #if owner.neg_flags<5:
@@ -786,6 +786,7 @@ def login_do(request):
                     #owner.save()
             #entry.status = 2
             #entry.changed = 1
+            entry.delete()
             #try:
                 #for x in entry.resetved_set.filter(status=1):
                     #send_email("Subject:Post Cancelled\n\nYour trip from " + entry.fro + " to " + entry.to + " on " + str(entry.date_time.date()) + " at " + str(entry.date_time.time()) + " has been cancelled by the owner.\n Click " + website + " to go to the home page.", x.reserver.user.email)
@@ -796,15 +797,15 @@ def login_do(request):
             #entry.save()
             
         #else:
-            #return HttpResponse(jinja_environ.get_template('notice.html').render({"author":request.user.author,
-                                                                                #"text":'<p>Not enough permissions.</p>\
-                                                                                    #<p>Please go back or click OK to go to the homepage</p>',"link":'/'}))
-    #except Exception as e:
-        #return HttpResponse(e)
+   return HttpResponse(jinja_environ.get_template('notice.html').render({"author":request.user.author, 
+                                                                         "text":'<p>Recipe Deleted</p>\
+                                                                         <p>Please go back or click OK to go to the homepage</p>',"link":'/'}))
+    except Exception as e:
+        return HttpResponse(e)
 
     
-    #return HttpResponse(jinja_environ.get_template('notice.html').render({"author":request.user.author,
-                                                                          #"text":'Post Cancelled successfully. Please go back or click OK to go to the homepage',"link":'/'}))
+    return HttpResponse(jinja_environ.get_template('notice.html').render({"author":request.user.author,
+                                                                          "text":'Post Cancelled successfully. Please go back or click OK to go to the homepage',"link":'/'}))
 
 #Called when a user clicks submit on new post form.                                                                          
 @csrf_exempt
